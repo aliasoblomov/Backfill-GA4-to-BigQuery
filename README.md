@@ -44,6 +44,50 @@ pip install google-analytics-data google-cloud-bigquery google-auth google-auth-
 ### Step 5: Script Setup
 Save the provided main Python script to your project directory.
 
+
+## Authentication Process
+This project can be authenticated either by using a Service Account or via Desktop App OAuth setup. Follow the steps in the respective section based on your requirement.
+
+### Service Account Creation
+To access Google services programmatically, a service account is used for server-to-server, app-level authentication.
+
+1. **Google Cloud Console Setup**:
+   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
+   - Select or create a new project.
+   - Navigate to "IAM & Admin > Service Accounts".
+   - Click "Create Service Account" and enter the necessary details.
+   - Assign the required roles (e.g., BigQuery Admin or Owner).
+
+2. **Create Key for the Service Account**:
+   - Once the service account is created, click on it to view details.
+   - Go to the "Keys" tab.
+   - Click "Add Key" and choose "Create new key".
+   - Select JSON as the key type and click "Create".
+   - A JSON file will be downloaded, which will be used in your project for authentication.
+
+### Desktop App OAuth Setup
+For local development and testing, OAuth 2.0 with a Desktop App client is recommended.
+
+1. **OAuth Client ID Creation**:
+   - Navigate to "APIs & Services > Credentials" in the Google Cloud Console.
+   - Click "Create Credentials" and choose "OAuth client ID".
+   - Select "Desktop app" as the Application type.
+   - Give it a name and click "Create".
+
+2. **Download OAuth Client Configuration**:
+   - After creating the OAuth client ID, download the client configuration JSON file.
+   - This file contains your client ID and secret, which are necessary for the OAuth flow.
+
+3. **Using the OAuth Client**:
+   - When you run your script, it will prompt you to visit a URL for authentication.
+   - Manually open this URL, authenticate, and grant permissions.
+   - Copy the authorization code provided and paste it back into the script.
+
+#### Note:
+- The script uses the `token.pickle` file to store access tokens and refresh tokens. Once authenticated, you won't need to repeat the process unless the token is revoked or expired.
+
+
+
 ## Usage
 Run the script with the desired flags (`--yesterday` or `--initial_fetch`). The script includes two authentication steps:
 1. **Service Account Authentication for BigQuery**: This uses the service account JSON file for BigQuery operations.
