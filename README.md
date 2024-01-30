@@ -66,7 +66,11 @@ Fill out and save a `config.json` file with your specific parameters. Example:
 ### Step 5: Installation of Dependencies
 Install necessary Python packages:
 ```bash
-pip install google-analytics-data google-cloud-bigquery google-auth google-auth-oauthlib google-auth-httplib2
+pip install google-analytics-data
+pip install google-cloud-bigquery
+pip install google-auth
+pip install google-auth-oauthlib
+pip install google-auth-httplib2
 ```
 
 ### Step 6: Authentication
@@ -77,13 +81,6 @@ pip install google-analytics-data google-cloud-bigquery google-auth google-auth-
   - After authentication, you'll receive a verification code.
   - Copy and paste this code back into the script.
  
-Understood, I'll insert a step before the final verification, explaining how to run the script with the desired flags (`--yesterday` or `--initial_fetch`). This step will guide users on how to execute the script properly after setting up the configuration and authentication.
-
----
-
-## Installation and Setup
-
-[Previous sections remain the same]
 
 ### Step 7: Running the Script
 
@@ -102,7 +99,7 @@ After configuring the `config.json` file and ensuring authentication setup is co
   - This will start the data retrieval process based on the specified date range.
 
 
-### Step 8: Final Execution
+### Step 8: QA
 
 - **Check for Successful Setup**:
   - Upon successful completion of the script, it should indicate that the authentication process is complete and data fetching has started.
@@ -121,15 +118,11 @@ Your project can be customized to fetch different metrics and dimensions based o
 
 ## Contributing
 
-Encourage other developers to contribute to your project. Provide clear guidelines on how they can contribute.
-
-```markdown
 Contributions to this project are welcome! Here's how you can help:
 
 - **Reporting Issues**: Report issues or bugs by opening a new issue in the GitHub repository.
 - **Feature Requests**: If you have ideas for new features or improvements, feel free to create an issue describing your suggestion.
 - **Submitting Pull Requests**: You can contribute directly to the codebase. Please ensure your code adheres to the project's coding standards and include tests for new features.
-```
 
 
 ## Contact
