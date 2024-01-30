@@ -35,18 +35,42 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
    - Choose "JSON" as the key type and click "Create".
    - A JSON key file will be downloaded. Store it securely.
   
+
 ### Step 3: Setting Up OAuth for Desktop App
 
-1. **Create OAuth 2.0 Client ID**:
-   - Navigate to "APIs & Services > Credentials".
-   - Click "Create Credentials" and select "OAuth client ID".
-   - Choose "Desktop app" as the Application type, provide a name, and create.
+To set up OAuth for a desktop application, you need to create an OAuth client ID in Google Cloud Console. Before creating an OAuth client ID, make sure to configure your consent screen if you don't have one already.
 
-2. **Download OAuth Client Configuration**:
-   - After creating the OAuth client ID, download the client configuration JSON file.
-   - This file contains your client ID and secret, which are necessary for the OAuth flow.
+#### Configure the Consent Screen:
+
+1. **Access Consent Screen Configuration**:
+   - In the Google Cloud Console, navigate to "APIs & Services > OAuth consent screen".
+   - Select the external user type.
+   
+2. **Fill in Consent Screen Details**:
+   - Provide the necessary information, such as the app name, user support email, and developer contact information.
+   -  add your email (and others, if needed) in the "Test users" section.
+
+4. **Publish the App**:
+   - Once all necessary information is provided, save and publish your consent screen.
+
+#### Create OAuth 2.0 Client ID:
+
+1. **Navigate to Credentials**:
+   - Go to "APIs & Services > Credentials".
+
+2. **Create OAuth Client ID**:
+   - Click "Create Credentials" and select "OAuth client ID".
+   - Choose "Desktop app" as the Application type.
+   - Provide a name for the client ID and click "Create".
+
+3. **Download Client Configuration**:
+   - After the OAuth client ID is created, download the client configuration JSON file.
+   - This file contains your client ID and secret, which are essential for the OAuth flow.
+
 #### Note:
-- The script uses the `token.pickle` file to store access tokens and refresh tokens. Once authenticated, you won't need to repeat the process unless the token is revoked or expired.
+
+- The script uses a `token.pickle` file to store access tokens and refresh tokens. Once authenticated, you won't need to repeat the authentication process unless the token is revoked or expired.
+- Ensure that the JSON file is stored securely and referenced correctly in your project.
 
 
 ### Step 4: Configuration File
