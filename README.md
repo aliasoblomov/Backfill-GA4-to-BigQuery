@@ -19,13 +19,25 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
 6. [Contact](#contact)
 
 
-
 ## Features
-- **OAuth 2.0 Authentication**: Simplified authentication using OAuth 2.0 credentials for desktop apps, with an easy-to-follow local host URL verification method.
-- **Service Account Integration**: Secure connection to Google Cloud services via service accounts.
-- **Comprehensive Data Extraction**: Fetch GA4 data from the initial setup date.
-- **Customizable Configuration**: `config.json` file to tailor the data extraction process.
-- **BigQuery Integration**: Efficiently processes and saves data into BigQuery with proper schema management.
+
+- **OAuth 2.0 Authentication**: Simplifies authentication with OAuth 2.0 credentials, ideal for desktop apps and environments like Google Colab.
+
+- **Service Account Integration**: Securely connects to Google Cloud services using service accounts for enhanced security.
+
+- **Data Extraction from GA4**: Fetches comprehensive GA4 data from a specified start date, ideal for historical data backfilling.
+
+- **Customizable Configuration**: Offers a `config.json` file for user-specific settings like table prefixes and property IDs.
+
+- **BigQuery Integration**: Efficiently processes and stores data in BigQuery with proper schema management.
+
+- **Export Functionality**: Enables exporting GA4 data to CSV format for external use.
+
+- **Duplicate Check**: Incorporates mechanisms to avoid duplicate data entries in BigQuery.
+
+- **Flexible Data Retrieval**: Allows data fetching from a specific date or the previous day.
+
+- **Robust Error Handling**: Includes effective error handling and logging for smooth operation.
 
 ## Prerequisites
 - Google Cloud account with billing enabled.
