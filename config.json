@@ -1,0 +1,9 @@
+{
+"CLIENT_SECRET_FILE": "<Path to your client secret file>",
+"SERVICE_ACCOUNT_FILE": "<Path to your service account JSON file>",
+"SCOPES": ["https://www.googleapis.com/auth/analytics.readonly"],
+"TABLE_PREFIX": "_backfill_GA4",
+"PROPERTY_ID": "<Google Analytics Property ID>",
+"DATASET_ID": "<BigQuery Dataset ID>",
+"INITIAL_FETCH_FROM_DATE": "2022-01-01"
+}
