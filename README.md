@@ -1,6 +1,25 @@
 # Backfill-GA4-to-BigQuery
 Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill their GA4 data into BigQuery. This is useful for those who need historical data from the start of their GA4 property, as GA4 data is typically only available in BigQuery after linking the two services. Our solution provides a complete backfill of data to BigQuery. It uses OAuth 2.0 credentials for desktop applications, making authentication easier and well-suited for IDEs like Google Colab.
 
+
+## Table of Contents
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Setup and Installation](#setup-and-installation)
+   - [Step 1: Create New Dataset and Activate Analytics API](#step-1-create-new-dataset-and-activate-analytics-api)
+   - [Step 2: Creating a Service Account](#step-2-creating-a-service-account)
+   - [Step 3: Setting Up OAuth for Desktop App](#step-3-setting-up-oauth-for-desktop-app)
+   - [Step 4: Configuration File](#step-4-configuration-file)
+   - [Step 5: Installation of Dependencies](#step-5-installation-of-dependencies)
+   - [Step 6: Authentication](#step-6-authentication)
+   - [Step 7: Running the Script](#step-7-running-the-script)
+   - [Step 8: QA](#step-8-qa)
+4. [Customization](#customization)
+5. [Contributing](#contributing)
+6. [Contact](#contact)
+
+
+
 ## Features
 - **OAuth 2.0 Authentication**: Simplified authentication using OAuth 2.0 credentials for desktop apps, with an easy-to-follow local host URL verification method.
 - **Service Account Integration**: Secure connection to Google Cloud services via service accounts.
