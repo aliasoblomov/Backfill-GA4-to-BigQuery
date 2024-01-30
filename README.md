@@ -117,6 +117,13 @@ Fill out and save a `config.json` file with your specific parameters. Example:
   "INITIAL_FETCH_FROM_DATE": "YYYY-MM-DD"
 }
 ```
+- **Client Secret and Service Account File**: Replace the placeholders with the actual paths to your OAuth client secret and service account JSON files.
+  
+- **Table Prefix**: Specify the prefix for your BigQuery tables. If the specified prefix does not exist, the script will create tables with this prefix in BigQuery.
+
+- **Property ID and Dataset ID**: Insert your Google Analytics Property ID and the BigQuery Dataset ID where data will be stored.
+
+- **Initial Fetch Date**: Set the initial date from which to fetch historical data in `YYYY-MM-DD` format.
 
 ### Step 5: Installation of Dependencies
 Install necessary Python packages:
