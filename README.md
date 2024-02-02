@@ -14,9 +14,10 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
    - [Step 6: Authentication](#step-6-authentication)
    - [Step 7: Running the Script](#step-7-running-the-script)
    - [Step 8: QA](#step-8-qa)
-4. [Customization](#customization)
-5. [Contributing](#contributing)
-6. [Contact](#contact)
+4. [Troubleshooting](#troubleshooting)
+5. [Customization](#customization)
+6. [Contributing](#contributing)
+7. [Contact](#contact)
 
 
 ## Features
@@ -170,6 +171,21 @@ After configuring the `config.json` file and saving the source code with the sam
   - Additionally, the `output.csv` file in your project directory should contain the fetched data.
   - If the tables are visible and the CSV file has data, everything is set up correctly.
  
+
+## Troubleshooting
+
+### AttributeError on Script Execution
+
+**Issue:** Encountering an `AttributeError` related to `credentials.universe_domain` when running the script.
+
+**Solution:** This is likely due to version mismatches in `google-auth` and `google-analytics-data` libraries. Resolve it by upgrading both libraries:
+
+```shell
+pip install --upgrade google-analytics-data google-auth
+```
+
+Run this command in your terminal or command prompt to ensure you're using compatible versions, which should fix the issue.
+
 
 ## Customization
 
