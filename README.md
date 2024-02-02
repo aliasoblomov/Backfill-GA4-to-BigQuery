@@ -157,7 +157,7 @@ After configuring the `config.json` file and saving the source code with the sam
   - Ensure that you choose a Google account that has the necessary access to selected property.
   - If you don't verify your app in the first step, select "Go to GA4backfill (unsafe)" to access the authentication code on localhost.
   - Your code can be found as a part of the URL between "code=" and the next ampersand. (Screenshot attached)
-    ![ga4-bigquery-Script Authentication](https://drive.google.com/file/d/1b4N4nQm74EgxEY7sbMLgZcefS8-dGtnn/view?usp=sharing)
+    [![Ga4-bigquery-Script Authentication.png](https://i.postimg.cc/5N2T2Hkj/authentication-image.png)](https://postimg.cc/6TFYHQKN)
   - Copy and paste this code back into the script.
   - Now data retrieval process based on the specified date range should be completed. It is important that a table, that has been exported, is 
     visible in both Bigquery table and CSV downloadable file.
