@@ -156,7 +156,7 @@ After configuring the `config.json` file and saving the source code with the sam
   - Execute your Python script.
   - It will prompt you to open a URL for authentication.
   - Ensure that you choose a Google account that has the necessary access to selected property.
-  - If you don't verify your app in the first step, select "Go to GA4backfill (unsafe)" to access the authentication code on localhost.
+  - If you don't verify your app in the first step, select "Go to 'YourPublishedAPP'(unsafe)" to access the authentication code on localhost.
   - Your code can be found as a part of the URL between "code=" and the next ampersand. (Screenshot attached)
     [![Ga4-bigquery-Script Authentication.png](https://i.postimg.cc/5N2T2Hkj/authentication-image.png)](https://postimg.cc/6TFYHQKN)
   - Copy and paste this code back into the script.
