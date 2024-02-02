@@ -127,9 +127,9 @@ Fill out and save a `config.json` file with your specific parameters. Example:
 ### Step 5: Installation of Dependencies
 Install necessary Python packages:
 ```bash
-!pip install google-analytics-data
+!pip install google-analytics-data==0.18.4
 !pip install google-cloud-bigquery
-!pip install google-auth
+!pip install google-auth==2.27.0
 !pip install google-auth-oauthlib
 !pip install google-auth-httplib2
 ```
