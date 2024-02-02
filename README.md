@@ -133,18 +133,9 @@ Install necessary Python packages:
 !pip install google-auth-httplib2
 ```
 
-### Step 6: Authentication
+### Step 6: Running the Script
 
-- **Run the Script**:
-  - Execute your Python script.
-  - It will prompt you to open a URL for authentication.
-  - After authentication, you'll receive a verification code.
-  - Copy and paste this code back into the script.
- 
-
-### Step 7: Running the Script
-
-After configuring the `config.json` file and ensuring authentication setup is complete, it's time to run the script with the desired flags.
+After configuring the `config.json` file and saving the source code with the same name `backfill-ga4.py` , it's time to run the script with the desired flags.
 
 - **Execute the Script with Flags**:
   - Use the `%run` command followed by the script name and the desired flag.
@@ -156,8 +147,19 @@ After configuring the `config.json` file and ensuring authentication setup is co
     ```bash
     %run backfill-ga4.py --initial_fetch
     ```
-  - This will start the data retrieval process based on the specified date range.
+  - This will start the authentication flow 
+    
+### Step 7: Authentication
 
+- **Run the Script**:
+  - Execute your Python script.
+  - It will prompt you to open a URL for authentication.
+  - Ensure that you choose a Google account that has the necessary access to selected property.
+  - If you don't verify your app in the first step, select "Go to GA4backfill (unsafe)" to access the authentication code on localhost.
+  - Your code can be found as a part of the URL between "code=" and the next ampersand. (Screenshot attached)
+  - Copy and paste this code back into the script.
+  - Now data retrieval process based on the specified date range should be completed. It is important that a table, that has been exported, is 
+    visible in both Bigquery table and CSV downloadable file.
 
 ### Step 8: QA
 
