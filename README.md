@@ -56,7 +56,7 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
 2. **Create a Service Account**:
    - Navigate to "IAM & Admin > Service Accounts".
    - Click "Create Service Account", enter a name, description, and click "Create".
-   - Grant necessary roles to the service account (e.g., BigQuery Admin).
+   - Grant necessary roles to the service account (e.g., Owner or BigQuery Admin + BigQuery Job User).
 
 3. **Generate a Service Account Key**:
    - Click on the created service account to manage it.
@@ -126,11 +126,11 @@ Fill out and save a `config.json` file with your specific parameters. Example:
 ### Step 5: Installation of Dependencies
 Install necessary Python packages:
 ```bash
-pip install google-analytics-data
-pip install google-cloud-bigquery
-pip install google-auth
-pip install google-auth-oauthlib
-pip install google-auth-httplib2
+!pip install google-analytics-data
+!pip install google-cloud-bigquery
+!pip install google-auth
+!pip install google-auth-oauthlib
+!pip install google-auth-httplib2
 ```
 
 ### Step 6: Authentication
