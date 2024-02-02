@@ -46,21 +46,19 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
 
 ## Setup and Installation
 
-### Step 1: Create New Dataset and Activate Analytics API
-- Go to [Google Cloud Console](https://console.cloud.google.com/apis/api/analyticsdata.googleapis.com/metrics) to create a new dataset and activate the Analytics API.
+### Step 1: Create a New Project and Activate Analytics API
+- Go to [Google Cloud Console](https://console.cloud.google.com/apis/api/analyticsdata.googleapis.com/metrics) to activate the Analytics API in your selected project.
 
 ### Step 2: Creating a Service Account
 
 1. **Access Google Cloud Console**: Visit the [Google Cloud Console](https://console.cloud.google.com/).
 
-2. **Select/Create a Project**: Choose an existing project or create a new one.
-
-3. **Create a Service Account**:
+2. **Create a Service Account**:
    - Navigate to "IAM & Admin > Service Accounts".
    - Click "Create Service Account", enter a name, description, and click "Create".
    - Grant necessary roles to the service account (e.g., BigQuery Admin).
 
-4. **Generate a Service Account Key**:
+3. **Generate a Service Account Key**:
    - Click on the created service account to manage it.
    - Go to the "Keys" tab and click "Add Key", then "Create new key".
    - Choose "JSON" as the key type and click "Create".
