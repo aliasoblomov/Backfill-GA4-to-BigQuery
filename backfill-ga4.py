@@ -28,14 +28,6 @@ def exists_in_bigquery(event_name, event_date, event_count, channel_group, datas
     except NotFound:
         return False
 
-    query = """
-        SELECT COUNT(*)
-        FROM `{}.{}`
-        WHERE `Event_Name` = @event_name
-          AND `Event_Date` = @event_date
-          AND `Event_Count` = @event_count
-          AND `Channel` = @channel_group
-    """.format(dataset_id, table_id)
 
     params = [
         bigquery.ScalarQueryParameter('event_name', 'STRING', event_name),
@@ -67,6 +59,8 @@ PROPERTY_ID = config['PROPERTY_ID']
 DATASET_ID = config['DATASET_ID']
 INITIAL_FETCH_FROM_DATE = config['INITIAL_FETCH_FROM_DATE']
 SERVICE_ACCOUNT_FILE = config['SERVICE_ACCOUNT_FILE']
+PARTITION_BY = config.get('PARTITION_BY', 'Event_Date')  # Default to Event_Date
+CLUSTER_BY = config.get('CLUSTER_BY', 'Event_Name')
 
 # Command line arguments for date range
 parser = argparse.ArgumentParser(description='Fetch data based on date range.')
@@ -239,28 +233,70 @@ with open('output.csv', 'w', newline='', encoding='utf-8') as csvfile:
 
 print("Data saved to output.csv!", flush=True)
 
-# Save data to BigQuery
+def create_or_update_table_with_partition_and_cluster(dataset_id, simple_table_id, schema, partition_by=None, cluster_by=None):
+    full_table_id = f"{bq_client.project}.{dataset_id}.{simple_table_id}"  # Correctly construct the full table ID
+    table = bigquery.Table(full_table_id, schema=schema)
+    
+    if partition_by:
+        table.time_partitioning = bigquery.TimePartitioning(field=partition_by)
+        
+    if cluster_by:
+        table.clustering_fields = [cluster_by]
+    
+    try:
+        # Attempt to create the table, or if it exists, confirm it's updated
+        created_table = bq_client.create_table(table, exists_ok=True)
+        print(f"Table {created_table.full_table_id} created or confirmed existing with specified settings.")
+    except Exception as e:
+        print(f"Error creating or confirming table: {e}")
+
+TABLE_PREFIX = config.get('TABLE_PREFIX')  # Handle potential absence of key
+DATASET_ID = config['DATASET_ID']
+
 schema = [
     bigquery.SchemaField("Event_Name", "STRING", mode="NULLABLE"),
-    bigquery.SchemaField("Event_Date", "INTEGER", mode="NULLABLE"),
+    bigquery.SchemaField("Event_Date", "DATE", mode="NULLABLE"),  
     bigquery.SchemaField("Event_Count", "INTEGER", mode="NULLABLE"),
     bigquery.SchemaField("Is_Conversion", "BOOLEAN", mode="NULLABLE"),
     bigquery.SchemaField("Channel", "STRING", mode="NULLABLE"),
-    bigquery.SchemaField("Event_Type", "STRING", mode="NULLABLE")
+    bigquery.SchemaField("Event_Type", "STRING", mode="NULLABLE"),
 ]
 
-for (year, month), rows_to_insert in rows_by_month.items():
-    table_ref = get_table_ref(year, month)
+def format_event_date(event_date):
+    return f"{event_date[:4]}-{event_date[4:6]}-{event_date[6:]}"
 
-    try:
-        bq_client.get_table(table_ref)
-    except NotFound:
-        table = bigquery.Table(table_ref, schema=schema)
-        bq_client.create_table(table)
-        print(f"Table {table.table_id} created.", flush=True)
+table_id = f"{bq_client.project}.{DATASET_ID}.{TABLE_PREFIX}"
 
-    errors = bq_client.insert_rows(table_ref, rows_to_insert, selected_fields=schema)
+try:
+    bq_client.get_table(table_id)
+    print(f"Table {table_id} already exists.")
+except NotFound:
+    # If table does not exist, create it
+    print(f"Table {table_id} not found. Creating table...")
+    table = bigquery.Table(table_id, schema=schema)
+    table.time_partitioning = bigquery.TimePartitioning(
+        field=config["PARTITION_BY"],
+        type_=bigquery.TimePartitioningType.DAY
+    )
+    if "CLUSTER_BY" in config and config["CLUSTER_BY"]:
+        table.clustering_fields = [config["CLUSTER_BY"]]
+    bq_client.create_table(table)
+    print(f"Created table {table_id}")
+
+all_rows_to_insert = []
+for _, month_data in rows_by_month.items():
+    for row in month_data:
+        # Format the 'Event_Date' to match BigQuery DATE format 'YYYY-MM-DD'
+        if 'Event_Date' in row:
+            row['Event_Date'] = format_event_date(row['Event_Date'])
+        all_rows_to_insert.append(row)
+
+# Now, insert all rows into the single table
+if all_rows_to_insert:
+    errors = bq_client.insert_rows_json(table_id, all_rows_to_insert)  # Use insert_rows_json for better performance with dicts
     if errors:
         print("Errors:", errors, flush=True)
     else:
-        print(f"Data saved to BigQuery for {month}/{year}!", flush=True)
+        print(f"Data saved to BigQuery!", flush=True)
+else:
+    print("No data to insert.")
