@@ -131,7 +131,7 @@ Fill out and save a `config.json` file with your specific parameters. Example:
 
 - **PARTITION_BY**: Specifies the column for table partitioning. Default is Event_Date, which is highly recommended for optimal data management.
   
-- **:CLUSTER_BY**:: Specifies the column(s) for table clustering. Default is Event_Name, aligning with common querying patterns. While this choice is optimal for many use cases, you may customize this field.
+- **CLUSTER_BY**: Specifies the column(s) for table clustering. Default is Event_Name, aligning with common querying patterns. While this choice is optimal for many use cases, you may customize this field.
 
 Install necessary Python packages:
 ```bash
