@@ -5,5 +5,7 @@
 "TABLE_PREFIX": "_backfill_GA4",
 "PROPERTY_ID": "<Google Analytics Property ID>",
 "DATASET_ID": "<BigQuery Dataset ID>",
-"INITIAL_FETCH_FROM_DATE": "2022-01-01"
+"INITIAL_FETCH_FROM_DATE": "2022-01-01",
+"PARTITION_BY": "Event_Date",
+"CLUSTER_BY": "Event_Name"
 }
