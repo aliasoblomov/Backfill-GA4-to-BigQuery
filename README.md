@@ -39,6 +39,9 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
 - **Flexible Data Retrieval**: Allows data fetching from a specific date or the previous day.
 
 - **Robust Error Handling**: Includes effective error handling and logging for smooth operation.
+  
+- **Partitioning and clustering**: Dynamic partitioning and clustering for optimized query performance and cost management.
+
 
 ## Prerequisites
 - Google Cloud account with billing enabled.
@@ -113,7 +116,9 @@ Fill out and save a `config.json` file with your specific parameters. Example:
   "TABLE_PREFIX": "<Prefix for the BigQuery tables>",
   "PROPERTY_ID": "<Google Analytics Property ID>",
   "DATASET_ID": "<BigQuery Dataset ID>",
-  "INITIAL_FETCH_FROM_DATE": "YYYY-MM-DD"
+  "INITIAL_FETCH_FROM_DATE": "YYYY-MM-DD",
+  "PARTITION_BY": "Event_Date",
+  "CLUSTER_BY": "Event_Name"
 }
 ```
 - **Client Secret and Service Account File**: Replace the placeholders with the actual paths to your OAuth client secret and service account JSON files.
@@ -124,7 +129,10 @@ Fill out and save a `config.json` file with your specific parameters. Example:
 
 - **Initial Fetch Date**: Set the initial date from which to fetch historical data in `YYYY-MM-DD` format.
 
-### Step 5: Installation of Dependencies
+- **PARTITION_BY**: Specifies the column for table partitioning. Default is Event_Date, which is highly recommended for optimal data management.
+  
+- **:CLUSTER_BY**:: Specifies the column(s) for table clustering. Default is Event_Name, aligning with common querying patterns. While this choice is optimal for many use cases, you may customize this field.
+
 Install necessary Python packages:
 ```bash
 !pip install google-analytics-data==0.18.4
