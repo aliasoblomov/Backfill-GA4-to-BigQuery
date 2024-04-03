@@ -16,6 +16,18 @@ from google_auth_oauthlib.flow import Flow
 with open("config.json", "r") as f:
     config = json.load(f)
 
+#  function to validate and ensure FETCH_TO_DATE is correct
+def get_valid_end_date(end_date_str):
+    try:
+        valid_end_date = datetime.datetime.strptime(end_date_str, '%Y-%m-%d').date()
+    except (TypeError, ValueError):
+        valid_end_date = datetime.date.today()
+    return valid_end_date
+
+# Validate or default FETCH_TO_DATE from the config
+valid_end_date = get_valid_end_date(config.get('FETCH_TO_DATE'))
+FETCH_TO_DATE = valid_end_date.strftime('%Y-%m-%d')
+
 # Function to check if an event exists in BigQuery
 def exists_in_bigquery(event_name, event_date, event_count, channel_group, dataset_id, bq_client):
     year = event_date[:4]
@@ -61,6 +73,8 @@ INITIAL_FETCH_FROM_DATE = config['INITIAL_FETCH_FROM_DATE']
 SERVICE_ACCOUNT_FILE = config['SERVICE_ACCOUNT_FILE']
 PARTITION_BY = config.get('PARTITION_BY', 'Event_Date')  # Default to Event_Date
 CLUSTER_BY = config.get('CLUSTER_BY', 'Event_Name')
+FETCH_TO_DATE = config.get('FETCH_TO_DATE', datetime.date.today().strftime('%Y-%m-%d')) 
+
 
 # Command line arguments for date range
 parser = argparse.ArgumentParser(description='Fetch data based on date range.')
@@ -78,15 +92,14 @@ elif args.initial_fetch:
     confirmation = input("Using the initial_fetch might result in duplicated records. Do you want to proceed? (yes/no): ").strip().lower()
     if confirmation == 'yes':
         start_date = INITIAL_FETCH_FROM_DATE
-        end_date = datetime.date.today().strftime('%Y-%m-%d')
+        end_date = FETCH_TO_DATE  
     else:
         print("Exiting script due to user cancellation.", flush=True)
         sys.exit()
 else:
     print("No valid date range argument provided. Exiting script.", flush=True)
     sys.exit()
-
-print(f"Starting fetching data from {start_date} to {end_date}.", flush=True)
+print(f"Starting fetching data from {start_date} to {valid_end_date.strftime('%Y-%m-%d')}.", flush=True)
 
 # Authenticate with service account for BigQuery
 creds1 = service_account.Credentials.from_service_account_file(
