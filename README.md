@@ -42,6 +42,9 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
   
 - **Partitioning and clustering**: Dynamic partitioning and clustering for optimized query performance and cost management.
 
+- **Configurable End Date Range**: precise control over the data retrieval period, making it easier to manage data quotas and perform historical data analysis within a specific timeframe.
+
+
 
 ## Prerequisites
 - Google Cloud account with billing enabled.
@@ -110,24 +113,27 @@ To set up OAuth for a desktop application, you need to create an OAuth client ID
 Fill out and save a `config.json` file with your specific parameters. Example:
 ```json
 {
-  "CLIENT_SECRET_FILE": "<Path to your client secret file>",
-  "SERVICE_ACCOUNT_FILE": "<Path to your service account JSON file>",
-  "SCOPES": ["https://www.googleapis.com/auth/analytics.readonly"],
-  "TABLE_PREFIX": "<Prefix for the BigQuery tables>",
-  "PROPERTY_ID": "<Google Analytics Property ID>",
-  "DATASET_ID": "<BigQuery Dataset ID>",
-  "INITIAL_FETCH_FROM_DATE": "YYYY-MM-DD",
-  "PARTITION_BY": "Event_Date",
-  "CLUSTER_BY": "Event_Name"
+"CLIENT_SECRET_FILE": "<Path to your client secret file>",
+"SERVICE_ACCOUNT_FILE": "<Path to your service account JSON file>",
+"SCOPES": ["https://www.googleapis.com/auth/analytics.readonly"],
+"PROPERTY_ID": "<Google Analytics Property ID>",
+"INITIAL_FETCH_FROM_DATE": "2022-01-01",
+"FETCH_TO_DATE": "today",
+"DATASET_ID": "<BigQuery Dataset ID>",
+"TABLE_PREFIX": "_backfill_GA4",
+"PARTITION_BY": "Event_Date",
+"CLUSTER_BY": "Event_Name"
 }
 ```
 - **Client Secret and Service Account File**: Replace the placeholders with the actual paths to your OAuth client secret and service account JSON files.
-  
-- **Table Prefix**: Specify the prefix for your BigQuery tables. If the specified prefix does not exist, the script will create tables with this prefix in BigQuery.
 
 - **Property ID and Dataset ID**: Insert your Google Analytics Property ID and the BigQuery Dataset ID where data will be stored.
 
 - **Initial Fetch Date**: Set the initial date from which to fetch historical data in `YYYY-MM-DD` format.
+
+- **FETCH_TO_DATE**: Specify the end date for data fetching. Defaults to today's date. Format: `YYYY-MM-DD`.
+
+- **Table Prefix**: Specify the prefix for your BigQuery tables. If the specified prefix does not exist, the script will create tables with this prefix in BigQuery.
 
 - **PARTITION_BY**: Specifies the column for table partitioning. Default is Event_Date, which is highly recommended for optimal data management.
   
