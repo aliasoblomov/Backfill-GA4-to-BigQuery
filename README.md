@@ -14,10 +14,12 @@ Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill the
    - [Step 6: Running the Script](#step-6-running-the-script)
    - [Step 7: Authentication](#step-7-authentication)
    - [Step 8: QA](#step-8-qa)
-4. [Troubleshooting](#troubleshooting)
-5. [Customization](#customization)
-6. [Contributing](#contributing)
-7. [Contact](#contact)
+4. [Using the Pre-Built Notebook for GA4 Reports](#using-the-pre-built-notebook-for-ga4-reports)
+5. [Troubleshooting](#troubleshooting)
+6. [Customization](#customization)
+7. [Contributing](#contributing)
+8. [Contact](#contact)
+
 
 
 ## Features
@@ -110,7 +112,8 @@ To set up OAuth for a desktop application, you need to create an OAuth client ID
 
 
 ### Step 4: Configuration File
-Fill out and save a `config.json` file with your specific parameters. Example:
+Fill out and save a `config.json` file with your specific parameters. 
+Example:
 ```json
 {
 "CLIENT_SECRET_FILE": "<Path to your client secret file>",
@@ -184,6 +187,37 @@ After configuring the `config.json` file and saving the source code with the sam
   - Now, you should be able to see the new tables in your Google Analytics BigQuery dataset (`DATASET_ID` specified in your `config.json`).
   - Additionally, the `output.csv` file in your project directory should contain the fetched data.
   - If the tables are visible and the CSV file has data, everything is set up correctly.
+    
+
+## Using the Pre-Built Notebook for GA4 Reports
+
+This repository now includes a **custom notebook** for exporting **12 of the most useful GA4 reports** into BigQuery and CSV format. This notebook simplifies the process, eliminating the need to dive into the source code. Follow the steps below to configure and run the notebook.
+
+### Steps to Use the Notebook
+
+1. **Initial Steps**:
+   The first three steps (creating a dataset, activating the Analytics API, and setting up OAuth) remain the same as detailed in the [Setup and Installation](#setup-and-installation) section.
+
+2. **Prepare the Configuration File (`config.json`)**:
+   Use the following template for the `config.json` file:
+   ```json
+   {
+      "CLIENT_SECRET_FILE": "/path/to/your/client_secret.json",
+      "SERVICE_ACCOUNT_FILE": "/path/to/your/service_account.json",
+      "PROPERTY_ID": "<Your GA4 Property ID>",
+      "INITIAL_FETCH_FROM_DATE": "YYYY-MM-DD",
+      "FETCH_TO_DATE": "today",
+      "DATASET_ID": "<Your BigQuery Dataset ID>",
+      "SCOPES": ["https://www.googleapis.com/auth/analytics.readonly", "https://www.googleapis.com/auth/bigquery"]
+   }
+   ```
+   Replace placeholders with your project-specific details.
+
+3. **Run the Notebook**:
+   - Upload the `config.json` file to the notebook directory.
+   - Open and execute the cells in the notebook sequentially.
+   - During execution, you will be prompted to authorize access. Follow the instructions to complete the OAuth flow.
+   - Once authorized, the script will fetch the data and save it to BigQuery and a downloadable CSV.
  
 
 ## Troubleshooting
@@ -217,7 +251,4 @@ Contributions to this project are welcome! Here's how you can help:
 - **Feature Requests**: If you have ideas for new features or improvements, feel free to create an issue describing your suggestion.
 - **Submitting Pull Requests**: You can contribute directly to the codebase. Please ensure your code adheres to the project's coding standards and include tests for new features.
 
-
-## Contact
-For help, feedback, or discussions about potential features, please feel free to connect with me on [Linkedin](https://www.linkedin.com/in/ali-iz/).
 
