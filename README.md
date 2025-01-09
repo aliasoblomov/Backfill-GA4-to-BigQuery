@@ -1,6 +1,14 @@
 # Backfill-GA4-to-BigQuery
 Backfill-GA4-to-BigQuery" repository offers a solution for users to backfill their GA4 data into BigQuery. This is useful for those who need historical data from the start of their GA4 property, as GA4 data is typically only available in BigQuery after linking the two services. my solution provides a Game-Changer backfill of data to BigQuery. It uses OAuth 2.0 credentials for desktop applications, making authentication easier and well-suited for IDEs like Google Colab.
 
+## What's New
+
+I've added a **notebook version** of the code for working with GA4 data using Python and BigQuery! 
+
+- If you prefer **straightforward, ready-to-use scripts** for creating GA4-like tables with minimal effort, the notebook provides a streamlined approach for quick setup. 
+- For those looking to **customize the dimensions, metrics, or data handling processes**, the original main code remains your go-to option for flexibility and control.
+
+
 
 ## Table of Contents
 1. [Features](#features)
@@ -191,7 +199,23 @@ After configuring the `config.json` file and saving the source code with the sam
 
 ## Using the Pre-Built Notebook for GA4 Reports
 
-This repository now includes a **custom notebook** for exporting **12 of the most useful GA4 reports** into BigQuery and CSV format. This notebook simplifies the process, eliminating the need to dive into the source code. Follow the steps below to configure and run the notebook.
+This repository now includes a **custom notebook** for exporting **12 of the most useful GA4 reports** into BigQuery and CSV format. This notebook simplifies the process, eliminating the need to dive into the source code. Follow the steps below to configure and run the notebook. Here is a clear breakdown of the tables that will be exported after running the notebook :
+
+| **Table Name**                   | **Dimensions**                                 | **Metrics**                                                                                     |
+|-----------------------------------|-----------------------------------------------|-------------------------------------------------------------------------------------------------|
+| `ga4_transaction_items`          | `transactionId`, `itemName`, `date`           | `itemPurchaseQuantity`, `itemRevenue`                                                         |
+| `ga4_data_session_channel_group` | `date`, `sessionDefaultChannelGroup`          | `sessions`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue`                  |
+| `ga4_data_session_source_campaign_medium` | `date`, `sessionSource`, `sessionCampaignName`, `sessionMedium` | `sessions`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue` |
+| `ga4_data_country_language_city` | `date`, `country`, `language`, `city`         | `sessions`, `screenPageViews`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue` |
+| `ga4_data_item_name`             | `date`, `itemName`                            | `itemPurchaseQuantity`, `itemRevenue`                                                         |
+| `ga4_data_browser_os_device`     | `date`, `browser`, `operatingSystem`, `deviceCategory` | `sessions`, `screenPageViews`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue` |
+| `ga4_data_first_user_source_medium` | `date`, `firstUserMedium`, `firstUserSource`, `firstUserCampaignName` | `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue`                             |
+| `ga4_data_first_user_channel_group` | `date`, `firstUserDefaultChannelGroup`       | `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue`                             |
+| `ga4_ads_data`                   | `date`, `sessionSource`, `sessionMedium`, `sessionCampaignName` | `ecommercePurchases`, `averagePurchaseRevenue`, `purchaseRevenue`, `advertiserAdClicks`, `advertiserAdCost`, `advertiserAdCostPerClick`, `returnOnAdSpend` |
+| `ga4_all_metrics_data`           | `date`                                        | `sessions`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue`, `screenPageViews`, `eventCount`, `averageSessionDuration`, `engagedSessions`, `engagementRate` |
+| `ga4_event_metrics_data`         | `date`, `eventName`                           | `eventCount`, `eventCountPerUser`, `eventValue`                                               |
+| `ga4_data_date_metrics`          | `date`                                        | `sessions`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue`                 |
+
 
 ### Steps to Use the Notebook
 
