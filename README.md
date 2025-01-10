@@ -199,7 +199,7 @@ After configuring the `config.json` file and saving the source code with the sam
 
 ## Using the Pre-Built Notebook for GA4 Reports
 
-This repository now includes a **custom notebook** for exporting **15 of the most useful GA4 reports** into BigQuery and CSV format. This notebook simplifies the process, eliminating the need to dive into the source code. Follow the steps below to configure and run the notebook. Here is a clear breakdown of the tables that will be exported after running the notebook :
+This repository now includes a **custom notebook** for exporting **13 of the most useful GA4 reports** into BigQuery and CSV format. This notebook simplifies the process, eliminating the need to dive into the source code. Follow the steps below to configure and run the notebook. Here is a clear breakdown of the tables that will be exported after running the notebook :
 
 
 | **Table Name**                   | **Dimensions**                              | **Metrics**                                                                                     |
@@ -215,7 +215,6 @@ This repository now includes a **custom notebook** for exporting **15 of the mos
 | `ga4_ads_data`                   | `date`, `sessionSource`, `sessionMedium`, `sessionCampaignName` | `ecommercePurchases`, `averagePurchaseRevenue`, `purchaseRevenue`, `advertiserAdClicks`, `advertiserAdCost`, `advertiserAdCostPerClick`, `returnOnAdSpend` |
 | `ga4_all_metrics_data`           | `date`                                      | `sessions`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue`, `screenPageViews`, `eventCount`, `averageSessionDuration`, `engagedSessions`, `engagementRate` |
 | `ga4_event_metrics_data`         | `date`, `eventName`                         | `eventCount`, `eventCountPerUser`, `eventValue`                                               |
-| `ga4_data_date_metrics`          | `date`                                      | `sessions`, `totalUsers`, `newUsers`, `ecommercePurchases`, `purchaseRevenue`                 |
 | `ga4_page_location_data`     | `date`, `pageLocation`                      | `totalUsers`, `ecommercePurchases`, `purchaseRevenue`, `screenPageViews`, `eventCount`, `engagementRate` |
 | `ga4_landing_page_data`      | `date`, `landingPage`                       | `totalUsers`, `ecommercePurchases`, `purchaseRevenue`, `sessions`, `eventCount`, `engagementRate` |
 
