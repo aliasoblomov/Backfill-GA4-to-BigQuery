@@ -199,7 +199,7 @@ After configuring the `config.json` file and saving the source code with the sam
 
 ## Using the Pre-Built Notebook for GA4 Reports
 
-This repository now includes a **custom notebook** for exporting **12 of the most useful GA4 reports** into BigQuery and CSV format. This notebook simplifies the process, eliminating the need to dive into the source code. Follow the steps below to configure and run the notebook. Here is a clear breakdown of the tables that will be exported after running the notebook :
+This repository now includes a **custom notebook** for exporting **15 of the most useful GA4 reports** into BigQuery and CSV format. This notebook simplifies the process, eliminating the need to dive into the source code. Follow the steps below to configure and run the notebook. Here is a clear breakdown of the tables that will be exported after running the notebook :
 
 
 | **Table Name**                   | **Dimensions**                              | **Metrics**                                                                                     |
