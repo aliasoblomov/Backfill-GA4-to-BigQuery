@@ -279,10 +279,10 @@ While this Python solution provides a powerful, code-based way to backfill your 
 The new **[N8N GA4 Backfill Workflow](https://github.com/aliasoblomov/N8N-GA4-Backfill-Workflow)** accomplishes the same goal with several key advantages:
 
 * **Simplified Setup:** It uses a simple OAuth flow for connecting to Google services, managed directly within N8N's interface, eliminating the need for complex service account management.
-* **Full Automation:** The new workflow includes a built-in scheduler for true "set it and forget it" daily data pulls, along with optional [Telegram notifications](https://github.com/aliasoblomov/N8N-GA4-Backfill-Workflow) to monitor success or failure.
+* **Full Automation:** The new workflow includes a built-in scheduler for true "set it and forget it" daily data pulls, along with optional Telegram notifications to monitor success or failure.
 * **No-Code Customization:** You can add new reports or change metrics using a visual, drag-and-drop interface—no Python knowledge required.
 
-If you are starting a new backfill project or wish to migrate to a more hands-off solution, we highly encourage you to check out the **[N8N-based method](https://github.com/aliasoblomov/N8N-GA4-Backfill-Workflow)**. This Python repository remains fully functional for those who prefer a code-centric approach.
+If you are starting a new backfill project or wish to migrate to a more hands-off solution, we highly encourage you to check out the N8N GA4 Backfill Workflow. This Python repository remains fully functional for those who prefer a code-centric approach.
 
 
 ## Contributing
