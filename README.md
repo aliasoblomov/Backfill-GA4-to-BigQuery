@@ -27,6 +27,8 @@ I've added a **notebook version** of the code for working with GA4 data using Py
 6. [Customization](#customization)
 7. [Contributing](#contributing)
 8. [Contact](#contact)
+9. [✨ No-Code Alternative: The N8N Workflow](#-no-code-alternative-the-n8n-workflow)
+
 
 
 
@@ -268,6 +270,19 @@ Your project can be customized to fetch different metrics and dimensions based o
 
 - **Tailor Metrics and Dimensions**: In the script, identify the sections where API requests are constructed and modify the `metrics` and `dimensions` according to your requirements.
 - **Consult API Schema**: The API schema documentation provides a comprehensive list of all available metrics and dimensions, along with their descriptions and usage.
+
+
+## ✨ No-Code Alternative: The N8N Workflow
+
+While this Python solution provides a powerful, code-based way to backfill your data, a no-code, fully automated alternative is now available for those who prefer a visual approach.
+
+The new **[N8N GA4 Backfill Workflow](https://github.com/aliasoblomov/N8N-GA4-Backfill-Workflow)** accomplishes the same goal with several key advantages:
+
+* **Simplified Setup:** It uses a simple OAuth flow for connecting to Google services, managed directly within N8N's interface, eliminating the need for complex service account management.
+* **Full Automation:** The new workflow includes a built-in scheduler for true "set it and forget it" daily data pulls, along with optional [Telegram notifications](https://github.com/aliasoblomov/N8N-GA4-Backfill-Workflow) to monitor success or failure.
+* **No-Code Customization:** You can add new reports or change metrics using a visual, drag-and-drop interface—no Python knowledge required.
+
+If you are starting a new backfill project or wish to migrate to a more hands-off solution, we highly encourage you to check out the **[N8N-based method](https://github.com/aliasoblomov/N8N-GA4-Backfill-Workflow)**. This Python repository remains fully functional for those who prefer a code-centric approach.
 
 
 ## Contributing
